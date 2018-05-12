@@ -1,0 +1,64 @@
+﻿@model GrupoFortes.Web.ViewModels.FornecedorViewModel
+
+@{
+    Layout = null;
+}
+<div class="modal fade" id="myModalDetalheFornecedor">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastro de Fornecedor</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NomeContato)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NomeContato)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmailContato)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmailContato)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RazaoSocial)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RazaoSocial)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CNPJ)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CNPJ)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UF)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UF)
+                    </dd>
+
+                </dl>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="okDetalhe()">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

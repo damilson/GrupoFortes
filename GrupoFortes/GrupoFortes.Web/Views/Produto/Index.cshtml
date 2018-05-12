@@ -1,0 +1,15 @@
+﻿@model GrupoFortes.Web.ViewModels.ProdutoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Produtos</h2>
+
+<button class="btn btn-primary" onclick="cadastraProduto()"><span class="glyphicon glyphicon-plus"></span> Cadastrar Produto</button>
+
+<div id="tabela">
+    @{ Html.RenderAction("Tabela", "Produto");}
+</div>
+
+<script src="~/Scripts/App/produto.js"></script>

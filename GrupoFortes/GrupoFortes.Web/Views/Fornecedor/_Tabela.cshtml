@@ -1,0 +1,60 @@
+﻿@model GrupoFortes.Web.ViewModels.FornecedorViewModel
+
+@{ 
+    Layout = null;
+}
+@if (Model.ListaFornecedores.Count != 0)
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeContato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailContato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RazaoSocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNPJ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UF)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.ListaFornecedores)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeContato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailContato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RazaoSocial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNPJ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UF)
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-pencil" title="Editar fornecedor" onclick="editarFornecedor(@item.FornecedorId)"></span> |
+                    <span class="glyphicon glyphicon-list" title="Detalhar fornecedor" onclick="detalharFornecedor(@item.FornecedorId)"></span> |
+                    <span class="glyphicon glyphicon-trash" title="Excluir fornecedor" onclick="deletarFornecedor(@item.FornecedorId)"></span>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <label>Não existem fornecedores cadastrados.</label>
+}
