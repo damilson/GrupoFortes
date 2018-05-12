@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<div class="modal fade" id="myModalCadastroFornecedor">
+<div class="modal fade" id="myModalDetalharProduto">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,12 +15,6 @@
             </div>
             <div class="modal-body">
                 <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProdudoId)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.ProdudoId)
-                    </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.CodigoProduto)
                     </dt>
@@ -46,6 +40,9 @@
                         @Html.DisplayFor(model => model.ValordoProduto)
                     </dd>
                 </dl>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Ok" onclick="ok()"/>
+                </div>
             </div>
         </div>
     </div>

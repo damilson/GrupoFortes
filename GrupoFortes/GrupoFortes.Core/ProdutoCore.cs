@@ -33,8 +33,11 @@ namespace GrupoFortes.Core
 
             var produtoAlterado = _repositorio.Find<Produto>(x => x.ProdutoId == produto.ProdutoId);
 
+            produtoAlterado.CodigoProduto = produto.CodigoProduto;
             produtoAlterado.Descricao = produto.Descricao;
             produtoAlterado.ValordoProduto = produto.ValordoProduto;
+
+            _repositorio.UpdateAndSaveChanges(produtoAlterado);
         }
 
         public List<Produto> Listar()

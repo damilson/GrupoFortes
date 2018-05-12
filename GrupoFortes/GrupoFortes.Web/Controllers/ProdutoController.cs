@@ -28,8 +28,18 @@ namespace GrupoFortes.Web.Controllers
         // GET: Produto/Details/5
         public ActionResult Details(int id)
         {
+            var produto = _produto.Buscar(id);
 
-            return View();
+            var PVM = new ProdutoViewModel
+            {
+                CodigoProduto = produto.CodigoProduto,
+                DataDoCadastro = produto.DataDoCadastro,
+                Descricao = produto.Descricao,
+                ValordoProduto = produto.ValordoProduto,
+                ProdudoId = produto.ProdutoId
+            };
+
+            return View(PVM);
         }
 
         // GET: Produto/Create
@@ -43,9 +53,10 @@ namespace GrupoFortes.Web.Controllers
         {
             var produto = new Produto
             {
+                CodigoProduto = model.CodigoProduto,
                 Descricao = model.Descricao,
                 ValordoProduto = model.ValordoProduto,
-                DataDoCadastro = DateTime.Today
+                DataDoCadastro = DateTime.Now
             };
             try
             {
@@ -59,46 +70,56 @@ namespace GrupoFortes.Web.Controllers
         }
 
         // GET: Produto/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditView(int id)
         {
-            return View();
+            var produto = _produto.Buscar(id);
+
+            var PVM = new ProdutoViewModel
+            {
+                CodigoProduto = produto.CodigoProduto,
+                DataDoCadastro = produto.DataDoCadastro,
+                Descricao = produto.Descricao,
+                ValordoProduto = produto.ValordoProduto,
+                ProdudoId = produto.ProdutoId
+            };
+            return View("Edit", PVM);
         }
 
         // POST: Produto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public JsonResult Edit(ProdutoViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                var produto = new Produto
+                {
+                    ProdutoId = model.ProdudoId,
+                    CodigoProduto = model.CodigoProduto,
+                    Descricao = model.Descricao,
+                    ValordoProduto = model.ValordoProduto,
+                    DataDoCadastro = DateTime.Now
+                };
 
-                return RedirectToAction("Index");
+                _produto.Editar(produto);
+                return Alerta.CriaMensagemSucesso("Produto alterado com sucesso");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Alerta.CriaMensagemErro("Não foi possivel alterar o produto. Erro: " + ex.Message);
             }
         }
 
         // GET: Produto/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Produto/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                _produto.Deletar(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
+                return Alerta.CriaMensagemSucesso("Produto deletado com sucesso");
+            }catch(Exception ex)
             {
-                return View();
+                return Alerta.CriaMensagemErro("Naoo foi possivel deletar o produto. Erro: " + ex.Message);
             }
         }
 

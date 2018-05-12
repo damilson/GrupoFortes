@@ -39,9 +39,9 @@
                     @Html.DisplayFor(modelItem => item.ValordoProduto)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ProdutoId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ProdutoId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ProdutoId })
+                    <span class="glyphicon glyphicon-pencil" onclick="editarProduto(@item.ProdutoId)"></span> |
+                    <span class="glyphicon glyphicon-list" onclick="detalharProduto(@item.ProdutoId)"></span> |
+                    <span class="glyphicon glyphicon-trash" onclick="deletarProduto(@item.ProdutoId)"></span> 
                 </td>
             </tr>
         }

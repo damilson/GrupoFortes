@@ -253,6 +253,7 @@
     <Content Include="Views\Produto\_Tabela.cshtml" />
     <Content Include="Views\Produto\Details.cshtml" />
     <Content Include="Scripts\jquery.validate.custom.pt-br.js" />
+    <Content Include="Views\Produto\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

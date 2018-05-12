@@ -19,7 +19,7 @@ namespace GrupoFortes.Web.ViewModels
         [Display(Name =@"Data de Cadastro")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/aaaa}", ApplyFormatInEditMode = true)]
-        public string DataDoCadastro { get; set; }
+        public DateTime DataDoCadastro { get; set; }
         [Required]
         [Display(Name =@"Preço")]
         public decimal ValordoProduto { get; set; }
