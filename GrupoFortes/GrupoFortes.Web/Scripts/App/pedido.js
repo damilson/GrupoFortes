@@ -17,11 +17,9 @@ AddTableRow = function () {
     var statusData = false;
     $.post("/Produto/Produto",
         { codigo: $("#CodigoDoProduto").val() },
-        dataType: 'json',
-        async: false,
         function (Data) {
             if (Data != null) {
-                    
+
                 $("#DescricaoDoProduto").val(Data.Descricao);
                 var newRow = $("<tr>");
                 var cols = "";
@@ -31,7 +29,7 @@ AddTableRow = function () {
                 cols += '<td>' + $("#QuantidadeProduto").val() + '</td>';
                 cols += '<td>' + Data.ValordoProduto * + '</td>';
                 cols += '<td>';
-                cols += '<button onclick="RemoveTableRow(this)" type="button" class="btn btn-danger">Remover</button>';
+                cols += '<button onclick="removeTableRow(this)" type="button" class="btn btn-danger">Remover</button>';
                 cols += '</td>';
 
                 newRow.append(cols);
@@ -42,8 +40,19 @@ AddTableRow = function () {
                 return false;
             }
         })
+
     if (!statusData) {
         var Data = { Mensagem: "Pedido não cadastrado", Sucesso: false }
         alerta(Data);
     }
 };
+
+removeTableRow = function (item) {
+    var tr = $(item).closest('tr');
+
+    tr.fadeOut(400, function () {
+        tr.remove();
+    });
+
+    return false;
+}
