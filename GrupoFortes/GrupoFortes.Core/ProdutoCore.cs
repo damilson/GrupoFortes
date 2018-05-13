@@ -45,6 +45,11 @@ namespace GrupoFortes.Core
             return _repositorio.List<Produto>().ToList();
         }
 
+        public Produto PorCodigo(int codigo)
+        {
+            return _repositorio.Find<Produto>(x => x.CodigoProduto == codigo);
+        }
+
         public void Salvar(Produto produto)
         {
             produtoValidator.Validar(produto);

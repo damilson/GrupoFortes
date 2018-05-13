@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pedidos</h2>
+
+<button class="btn btn-primary" onclick="cadastrarPedido()">Cadastrar Pedido</button>
+
+<div id="tabela">
+    @{ Html.RenderAction("Tabela", "Pedido");}
+</div>
+
+<script src="~/Scripts/App/pedido.js"></script>

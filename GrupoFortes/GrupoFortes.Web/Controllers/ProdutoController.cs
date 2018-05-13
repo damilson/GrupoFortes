@@ -2,9 +2,6 @@
 using GrupoFortes.Entidades.Model;
 using GrupoFortes.Web.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Util.Alerta;
 
@@ -130,6 +127,13 @@ namespace GrupoFortes.Web.Controllers
             PVM.ListaProdutos = _produto.Listar();
 
             return View("_Tabela", PVM);
+        }
+
+        public JsonResult Produto(int codigo)
+        {
+            var produto = _produto.PorCodigo(codigo);
+
+            return Json(produto, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace GrupoFortes.Core
 
         Produto Buscar(int id);
 
+        Produto PorCodigo(int id);
+
         void Editar(Produto produto);
 
         void Salvar(Produto produto);

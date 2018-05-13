@@ -1,0 +1,59 @@
+﻿@model GrupoFortes.Web.ViewModels.PedidoViewModel
+
+@{
+    Layout = null;
+}
+
+@if (Model.ListaPedidos.Count != 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoDoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeDeProdutos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotalDoPedido)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.ListaPedidos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoDoPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataDoPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantidadeDeProdutos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotalDoPedido)
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-pencil" onclick="editarPedido(@item.PedidoId)"></span> |
+                    <span class="glyphicon glyphicon-list" onclick="detalharPedido(@item.PedidoId)"></span> |
+                    <span class="glyphicon glyphicon-trash" onclick="deletarPedido(@item.PedidoId)"></span>
+                </td>
+            </tr>
+        }
+
+    </table>
+}else
+{
+    <label>Não a pedidos a serem exibidos.</label>
+}

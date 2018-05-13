@@ -1,0 +1,66 @@
+﻿@model GrupoFortes.Web.ViewModels.PedidoViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PedidoViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PedidoId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PedidoId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoDoPedido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodigoDoPedido)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DataDoPedido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DataDoPedido)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QuantidadeDeProdutos)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuantidadeDeProdutos)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ValorTotalDoPedido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ValorTotalDoPedido)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
