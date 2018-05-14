@@ -9,7 +9,7 @@ namespace GrupoFortes.Core
 {
     public interface IPedidoCore
     {
-        List<Pedido> Listar();
+        List<Pedido> Listar(int idFornecedor = 0);
 
         Pedido Buscar(int id);
 

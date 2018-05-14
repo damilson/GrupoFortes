@@ -24,20 +24,33 @@ namespace GrupoFortes.Web.Controllers
         // GET: Pedido
         public ActionResult Index()
         {
-            return View();
+            var PVM = new PedidoViewModel();
+            PVM.ListaFornecedores = _fornecedor.Listar().Select(x => new SelectListItem { Value = x.FornecedorId.ToString(), Text = x.NomeContato });
+            return View(PVM);
         }
 
         // GET: Pedido/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pedido = _pedido.Buscar(id);
+
+            var PVM = new PedidoViewModel
+            {
+                CodigoDoPedido = pedido.CodigoDoPedido,
+                Itens = pedido.Itens,
+                QuantidadeItens = pedido.QuantidadeDeProdutos,
+                ValorTotalDoPedido = pedido.ValorTotalDoPedido,
+                DataDoPedido = pedido.DataDoPedido.ToString("dd/MM/yyyy"),
+                Fornecedor = pedido.Fornecedor
+            };
+
+            return View(PVM);
         }
 
         // GET: Pedido/Create
         public ActionResult CreateView()
         {
             var PVM = new PedidoViewModel();
-
             PVM.ListaFornecedores = _fornecedor.Listar().Select(x => new SelectListItem { Value = x.FornecedorId.ToString(), Text = x.NomeContato });
 
             return View("Create", PVM);
@@ -48,15 +61,30 @@ namespace GrupoFortes.Web.Controllers
         {
             try
             {
+                var listaItens = new List<Item>();
+
+                foreach (var item in model.Itens)
+                {
+                    listaItens.Add(new Item
+                    {
+                        Produto = new Produto
+                        {
+                            CodigoProduto = item.Produto.CodigoProduto,
+                            Descricao = item.Produto.Descricao
+                        },
+                        Quantidade = item.Quantidade
+                    });
+                }
+
                 var pedido = new Pedido
                 {
                     CodigoDoPedido = model.CodigoDoPedido,
-                    DataDoPedido = model.DataDoPedido,
+                    DataDoPedido = DateTime.Now.Date,
                     Fornecedor = new Fornecedor
                     {
                         FornecedorId = model.FornecedorId
                     },
-                    Produto = new List<Produto>(),
+                    Itens = listaItens,
                     QuantidadeDeProdutos = model.QuantidadeDeProdutos,
                     ValorTotalDoPedido = model.ValorTotalDoPedido
                 };
@@ -65,61 +93,99 @@ namespace GrupoFortes.Web.Controllers
 
                 return Alerta.CriaMensagemSucesso("Sucesso ao cadastrar pedido");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return Alerta.CriaMensagemErro("Falha ao cadastrar pedido. Erro: "+ex.Message);
+                return Alerta.CriaMensagemErro("Falha ao cadastrar pedido. Erro: " + ex.Message);
             }
         }
 
         // GET: Pedido/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditView(int id)
         {
-            return View();
+            var pedido = _pedido.Buscar(id);
+
+            var PVM = new PedidoViewModel
+            {
+                PedidoId = pedido.PedidoId,
+                CodigoDoPedido = pedido.CodigoDoPedido,
+                Itens = pedido.Itens,
+                QuantidadeItens = pedido.QuantidadeDeProdutos,
+                ValorTotalDoPedido = pedido.ValorTotalDoPedido,
+                DataDoPedido = pedido.DataDoPedido.ToString("dd/MM/yyyy")
+            };
+
+            return View("Edit", PVM);
         }
 
         // POST: Pedido/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public JsonResult Edit(PedidoViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                var listaItens = new List<Item>();
 
-                return RedirectToAction("Index");
+                if (model.Itens != null)
+                {
+                    foreach (var item in model.Itens)
+                    {
+                        listaItens.Add(new Item
+                        {
+                            ItemId = item.ItemId,
+                            Produto = new Produto
+                            {
+                                CodigoProduto = item.Produto.CodigoProduto,
+                                Descricao = item.Produto.Descricao
+                            },
+                            Quantidade = item.Quantidade
+                        });
+                    }
+                }
+
+                var pedido = new Pedido
+                {
+                    PedidoId = model.PedidoId,
+                    CodigoDoPedido = model.CodigoDoPedido,
+                    DataDoPedido = DateTime.Now.Date,
+                    Fornecedor = new Fornecedor
+                    {
+                        FornecedorId = model.FornecedorId
+                    },
+                    Itens = listaItens,
+                    QuantidadeDeProdutos = model.QuantidadeDeProdutos,
+                    ValorTotalDoPedido = model.ValorTotalDoPedido
+                };
+
+                _pedido.Editar(pedido);
+
+                return Alerta.CriaMensagemSucesso("Sucesso ao editar pedido");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Alerta.CriaMensagemErro("Falha ao editar pedido. Erro: " + ex.Message);
             }
         }
 
         // GET: Pedido/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Pedido/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                _pedido.Deletar(id);
+                return Alerta.CriaMensagemSucesso("Pedido reovido com sucesso.");
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Alerta.CriaMensagemSucesso("Falha ao remover Pedido. Erro: " + ex.Message);
             }
         }
 
-        public ActionResult Tabela()
+        public ActionResult Tabela(int idFornecedor = 0 )
         {
             var PVM = new PedidoViewModel();
 
-            PVM.ListaPedidos = _pedido.Listar();
+            PVM.ListaPedidos = _pedido.Listar(idFornecedor);
 
             return View("_Tabela", PVM);
         }

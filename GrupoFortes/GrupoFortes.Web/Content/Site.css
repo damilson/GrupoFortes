@@ -50,3 +50,8 @@ td span.glyphicon{
 button.btn{
     margin-bottom:15px;
 }
+
+.btn-addTable{
+    margin-top:25px;
+    float:right;
+}

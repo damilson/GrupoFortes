@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Fornecedor.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Pedido.cs" />
     <Compile Include="Model\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

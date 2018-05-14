@@ -1,11 +1,25 @@
-﻿
+﻿@model GrupoFortes.Web.ViewModels.PedidoViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Pedidos</h2>
 
-<button class="btn btn-primary" onclick="cadastrarPedido()">Cadastrar Pedido</button>
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-primary" onclick="cadastrarPedido()">Cadastrar Pedido</button>
+    </div>
+
+    <div class="form-group col-lg-7">
+        @Html.LabelFor(model => model.FornecedorId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-12">
+            @Html.DropDownListFor(model => model.FornecedorId, Model.ListaFornecedores, "Buscar Fornecdor",new { @class = "form-control", id = "FornecedorIdFiltro" })
+            @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
 
 <div id="tabela">
     @{ Html.RenderAction("Tabela", "Pedido");}

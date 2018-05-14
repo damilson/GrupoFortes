@@ -1,9 +1,6 @@
 ﻿using GrupoFortes.Entidades.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GrupoFortes.Web.ViewModels
@@ -31,7 +28,7 @@ namespace GrupoFortes.Web.ViewModels
         [Display(Name =@"Data do pedido")]
         public string DataDoPedido { get; set; }
 
-        public List<Produto> Produto { get; set; }
+        public List<Item> Itens { get; set; }
 
         [Display(Name =@"Quantidade de produtos")]
         public int QuantidadeDeProdutos { get; set; }
@@ -39,7 +36,13 @@ namespace GrupoFortes.Web.ViewModels
         [Display(Name =@"Valor total")]
         public double ValorTotalDoPedido { get; set; }
 
+        public int QuantidadeItens { get; set; }
+
+        public Fornecedor Fornecedor { get; set; }
+
         public List<Pedido> ListaPedidos { get; set; }
+
+        public List<Item> ListaItens { get; set; }
 
         public IEnumerable<SelectListItem> ListaFornecedores { get; set; }
     }

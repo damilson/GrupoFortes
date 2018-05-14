@@ -21,6 +21,21 @@ namespace GrupoFortes.Repositorio.Migrations
                 .PrimaryKey(t => t.FornecedorId);
             
             CreateTable(
+                "dbo.Item",
+                c => new
+                    {
+                        ItemId = c.Int(nullable: false, identity: true),
+                        Quantidade = c.Int(nullable: false),
+                        Pedido_PedidoId = c.Int(),
+                        Produto_ProdutoId = c.Int(),
+                    })
+                .PrimaryKey(t => t.ItemId)
+                .ForeignKey("dbo.Pedido", t => t.Pedido_PedidoId )
+                .ForeignKey("dbo.Produto", t => t.Produto_ProdutoId)
+                .Index(t => t.Pedido_PedidoId)
+                .Index(t => t.Produto_ProdutoId);
+            
+            CreateTable(
                 "dbo.Pedido",
                 c => new
                     {
@@ -43,23 +58,23 @@ namespace GrupoFortes.Repositorio.Migrations
                         CodigoProduto = c.Int(nullable: false),
                         Descricao = c.String(),
                         DataDoCadastro = c.DateTime(nullable: false),
-                        ValordoProduto = c.Double(nullable: false),
-                        Pedido_PedidoId = c.Int(),
+                        ValordoProduto = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
-                .PrimaryKey(t => t.ProdutoId)
-                .ForeignKey("dbo.Pedido", t => t.Pedido_PedidoId)
-                .Index(t => t.Pedido_PedidoId);
+                .PrimaryKey(t => t.ProdutoId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Produto", "Pedido_PedidoId", "dbo.Pedido");
+            DropForeignKey("dbo.Item", "Produto_ProdutoId", "dbo.Produto");
+            DropForeignKey("dbo.Item", "Pedido_PedidoId", "dbo.Pedido");
             DropForeignKey("dbo.Pedido", "Fornecedor_FornecedorId", "dbo.Fornecedor");
-            DropIndex("dbo.Produto", new[] { "Pedido_PedidoId" });
             DropIndex("dbo.Pedido", new[] { "Fornecedor_FornecedorId" });
+            DropIndex("dbo.Item", new[] { "Produto_ProdutoId" });
+            DropIndex("dbo.Item", new[] { "Pedido_PedidoId" });
             DropTable("dbo.Produto");
             DropTable("dbo.Pedido");
+            DropTable("dbo.Item");
             DropTable("dbo.Fornecedor");
         }
     }

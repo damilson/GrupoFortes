@@ -4,63 +4,111 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
+<div class="modal fade" id="myModalDetalhesPedido">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastro de Pedido</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CodigoDoPedido)
+                    </dt>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>PedidoViewModel</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.PedidoId)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.PedidoId)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.CodigoDoPedido)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.CodigoDoPedido)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DataDoPedido)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DataDoPedido)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.QuantidadeDeProdutos)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.QuantidadeDeProdutos)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ValorTotalDoPedido)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ValorTotalDoPedido)
-            </dd>
-    
-        </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.CodigoDoPedido)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DataDoPedido)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DataDoPedido)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QuantidadeItens)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QuantidadeItens)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ValorTotalDoPedido)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ValorTotalDoPedido)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fornecedor.NomeContato)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Fornecedor.NomeContato)
+                    </dd>
+                </dl>
+
+                <hr />
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Código</th>
+                            <th>Quantidade</th>
+                            <th>Preço por produto</th>
+                            <th>Valor total do item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Itens)
+                        {
+                            var valorTotaldoItem = @item.Quantidade * @item.Produto.ValordoProduto;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => item.Produto.Descricao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.Produto.CodigoProduto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.Quantidade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.Produto.ValordoProduto)
+                                </td>
+                                <td>
+                                    <label>@valorTotaldoItem</label>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <label>Total</label>
+                            </td>
+                            <td colspan="2">
+                                <label>@Model.QuantidadeItens</label>
+                            </td>
+                            <td>
+                                <label>@Model.ValorTotalDoPedido.ToString("#,##0.00")</label>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Ok" onclick="ok()" />
+                </div>
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+</div>

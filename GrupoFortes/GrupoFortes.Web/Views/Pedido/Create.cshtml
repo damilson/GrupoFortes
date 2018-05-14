@@ -62,29 +62,37 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button onclick="AddTableRow()" type="button" class="btn btn-success">Adicionar Produto</button>
+                            <button onclick="AddTableRow()" type="button" class="btn btn-success btn-addTable">Adicionar Produto</button>
                         </div>
                     </div>
 
                     <table id="products-table" class="table table-striped">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th>Produto</th>
                                 <th>Código</th>
                                 <th>Quantidade</th>
                                 <th>Preço</th>
+                                <th>Preço total do item</th>
                                 <th>Ações</th>
                             </tr>
+                        </thead>
+                        <tbody>
+
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5" style="text-align: left;"></td>
+                                <td>Valor total do pedido</td>
+                                <td></td>
+                                <td id="qtd" colspan="2"></td>
+                                <td id="qtdtotal"></td>
+
                             </tr>
                         </tfoot>
                     </table>
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success" value="Cadastrar" />
+                        <input type="button" onclick="salvarPedido()" class="btn btn-success" value="Cadastrar" />
                         <input type="button" onclick="cancelarCadastro()" class="btn btn-danger" value="Cancelar" />
                     </div>
                 }

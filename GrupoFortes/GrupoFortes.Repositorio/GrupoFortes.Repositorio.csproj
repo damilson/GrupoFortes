@@ -107,13 +107,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuracao\Contexto.cs" />
-    <Compile Include="Migrations\201805120431099_InicializaBase.cs" />
-    <Compile Include="Migrations\201805120431099_InicializaBase.Designer.cs">
-      <DependentUpon>201805120431099_InicializaBase.cs</DependentUpon>
+    <Compile Include="Migrations\201805131027092_InicializaBase.cs" />
+    <Compile Include="Migrations\201805131027092_InicializaBase.Designer.cs">
+      <DependentUpon>201805131027092_InicializaBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805121004431_AlteradoProduto.cs" />
-    <Compile Include="Migrations\201805121004431_AlteradoProduto.Designer.cs">
-      <DependentUpon>201805121004431_AlteradoProduto.cs</DependentUpon>
+    <Compile Include="Migrations\201805131546106_I=alteradodatapedido.cs" />
+    <Compile Include="Migrations\201805131546106_I=alteradodatapedido.Designer.cs">
+      <DependentUpon>201805131546106_I=alteradodatapedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805132333433_alteradoPedido.cs" />
+    <Compile Include="Migrations\201805132333433_alteradoPedido.Designer.cs">
+      <DependentUpon>201805132333433_alteradoPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,11 +135,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805120431099_InicializaBase.resx">
-      <DependentUpon>201805120431099_InicializaBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805131027092_InicializaBase.resx">
+      <DependentUpon>201805131027092_InicializaBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805121004431_AlteradoProduto.resx">
-      <DependentUpon>201805121004431_AlteradoProduto.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805131546106_I=alteradodatapedido.resx">
+      <DependentUpon>201805131546106_I=alteradodatapedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805132333433_alteradoPedido.resx">
+      <DependentUpon>201805132333433_alteradoPedido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -24,5 +24,6 @@ namespace GrupoFortes.Repositorio.Configuracao
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Fornecedor> Fornecedor { get; set; }
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Item> Item { get; set; }
     }
 }

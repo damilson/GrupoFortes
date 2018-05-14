@@ -7,13 +7,13 @@ namespace GrupoFortes.Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InicializaBase : IMigrationMetadata
+    public sealed partial class Ialteradodatapedido : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InicializaBase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Ialteradodatapedido));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805120431099_InicializaBase"; }
+            get { return "201805131546106_I=alteradodatapedido"; }
         }
         
         string IMigrationMetadata.Source

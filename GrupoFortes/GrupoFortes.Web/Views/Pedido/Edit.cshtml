@@ -4,72 +4,127 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
+<div class="modal fade" id="myModalEditarPedido">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edição de Pedido</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>PedidoViewModel</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.PedidoId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PedidoId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PedidoId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.CodigoDoPedido, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CodigoDoPedido, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CodigoDoPedido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.DataDoPedido, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DataDoPedido, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DataDoPedido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.QuantidadeDeProdutos, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.QuantidadeDeProdutos, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.QuantidadeDeProdutos, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.ValorTotalDoPedido, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ValorTotalDoPedido, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ValorTotalDoPedido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(x => x.PedidoId)
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.CodigoDoPedido, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CodigoDoPedido, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CodigoDoPedido, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.DataDoPedido, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.DataDoPedido, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.DataDoPedido, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            @Html.LabelFor(model => model.CodigoDoProduto, htmlAttributes: new { @class = "control-label col-md-8" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CodigoDoProduto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CodigoDoProduto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            @Html.LabelFor(model => model.DescricaoDoProduto, htmlAttributes: new { @class = "control-label col-md-8" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.DescricaoDoProduto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.DescricaoDoProduto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                            @Html.LabelFor(model => model.QuantidadeProduto, htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.QuantidadeProduto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.QuantidadeProduto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button onclick="AddTableRow()" type="button" class="btn btn-success btn-addTable">Adicionar Produto</button>
+                        </div>
+                    </div>
+
+                    <table id="products-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Produto</th>
+                                <th>Código</th>
+                                <th>Quantidade</th>
+                                <th>Preço unitário</th>
+                                <th>Valor total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Itens)
+                            {
+                                var valorTotaldoItem = item.Quantidade * item.Produto.ValordoProduto;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(x => item.ItemId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => item.Produto.Descricao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => item.Produto.CodigoProduto)
+                                    </td>
+                                    <td class="qtdItens">
+                                        @Html.DisplayFor(x => item.Quantidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => item.Produto.ValordoProduto)
+                                    </td>
+                                    <td class="valor-calculado">
+                                        @valorTotaldoItem
+                                    </td>
+                                    <td>
+                                        <button onclick="removeTableRow(this)" type="button" class="btn btn-danger">Remover</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Valor total do pedido</td>
+                                <td colspan="2"><label id="qtd">@Model.QuantidadeItens</label></td>
+                                <td colspan="2"><label id="qtdtotal">@Model.ValorTotalDoPedido</label></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="modal-footer">
+                        <input type="button" onclick="editarPedido()" class="btn btn-success" value="Salvar" />
+                        <input type="button" onclick="cancelarEdicao()" class="btn btn-danger" value="Cancelar" />
+                    </div>
+                }
+
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+</div>
